@@ -1,0 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<html>
+<head>
+<title>Implicit Objects</title>
+</head>
+<body>
+	<p>로그인을 실패하였습니다.
+	<p><a href="./response01.jsp">로그인 가기</a>
+</body>
+</html>
