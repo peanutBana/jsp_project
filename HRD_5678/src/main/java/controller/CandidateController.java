@@ -61,6 +61,8 @@ public class CandidateController extends HttpServlet {
 	            out.flush();
 	         } 
 	    	break;
+	    case "/check":
+	    	site = candidate.check(request, response); break;
 	    case "/rank":
 	    	site = candidate.result(request, response);  break;
 	    }

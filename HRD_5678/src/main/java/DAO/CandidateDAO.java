@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DTO.Candidate;
+import DTO.Vote;
 
 public class CandidateDAO {
 	Connection conn = null;
@@ -91,6 +92,24 @@ public class CandidateDAO {
 		}
 		
 		return result;
+	}
+	
+	public String check(HttpServletRequest request, HttpServletResponse response) {
+		ArrayList<Vote> list = new ArrayList<Vote>();
+		
+		try {
+			conn = getConnection();
+			
+			String sql = "select ";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		
+		return "check.jsp";
+		
 	}
 	
 }

@@ -6,9 +6,23 @@ public class Vote {
 	String m_no;
 	String v_time;
 	String v_area;
+	String v_age;
+	String v_sex;
 	String v_confirm;
 	public String getV_jumin() {
 		return v_jumin;
+	}
+	public String getV_age() {
+		return v_age;
+	}
+	public void setV_age(String v_age) {
+		this.v_age = v_age;
+	}
+	public String getV_sex() {
+		return v_sex;
+	}
+	public void setV_sex(String v_sex) {
+		this.v_sex = v_sex;
 	}
 	public void setV_jumin(String v_jumin) {
 		this.v_jumin = v_jumin;
