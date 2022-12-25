@@ -9,6 +9,14 @@ public class Vote {
 	String v_age;
 	String v_sex;
 	String v_confirm;
+	String v_birth;
+	
+	public String getV_birth() {
+		return v_birth;
+	}
+	public void setV_birth(String v_birth) {
+		this.v_birth = v_birth;
+	}
 	public String getV_jumin() {
 		return v_jumin;
 	}

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import DTO.Candidate;
 import DTO.Vote;
 
+
 public class CandidateDAO {
 	Connection conn = null;
 	PreparedStatement ps = null;
@@ -86,7 +87,6 @@ public class CandidateDAO {
 			
 			conn.close();
 			ps.close();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -100,16 +100,74 @@ public class CandidateDAO {
 		try {
 			conn = getConnection();
 			
-			String sql = "select ";
+			String sql = "SELECT V_NAME, SUBSTR(V_JUMIN,1,2)+1900||'년'||SUBSTR(V_JUMIN,3,2)||'월'||SUBSTR(V_JUMIN,5,2)||'일생' 생년월일, '만 '||TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), TO_DATE(19||SUBSTR(V_JUMIN,1,6),'YYYYMMDD')) / 12)||'세' 나이, DECODE(SUBSTR(V_JUMIN, 7, 1), '1', '남자', '2', '여자', '3', '남자', '4', '여자', '5', '남자', '6', '여자') 성별, M_NO 후보번호 ,SUBSTR(V_TIME, 1, 2)||':'||SUBSTR(V_TIME, 3, 2) 투표시간, DECODE(V_CONFIRM, 'N', '미확인', 'Y', '확인') 유권자확인 ";
+			sql += "FROM TBL_VOTE_202005 ";
+			sql += "WHERE V_AREA ='제1투표장'";
+			
+			
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Vote vote = new Vote();
+				vote.setV_name(rs.getString(1));
+				vote.setV_birth(rs.getString(2));
+				vote.setV_age(rs.getString(3));
+				vote.setV_sex(rs.getString(4));
+				vote.setM_no(rs.getString(5));
+				vote.setV_time(rs.getString(6));
+				vote.setV_confirm(rs.getString(7));
+				
+				list.add(vote);
+			}
+			
+			request.setAttribute("list", list);
+			
+			conn.close();
+			ps.close();
+			rs.close();
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-
-		
 		return "check.jsp";
-		
 	}
 	
+	public String rank(HttpServletRequest request, HttpServletResponse response) {
+		ArrayList<Candidate> list = new ArrayList<Candidate>();
+		
+		try {
+			conn = getConnection();
+			
+			String sql = "select m.m_no 후보번호, m.m_name 성명, count(v.m_no) 총투표건수 ";
+			sql += "from tbl_member_202005 m join tbl_vote_202005 v ";
+			sql += "on m.m_no = v.m_no and v.v_confirm = 'Y' ";
+			sql += "group by (m.m_no, m.m_name, v.m_no) ";
+			sql += "order by count(v.m_no) desc";
+			
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Candidate candidate = new Candidate();
+				candidate.setM_no(rs.getString(1));
+				candidate.setM_name(rs.getString(2));
+				candidate.setCount(rs.getString(3));
+				
+				list.add(candidate);
+			}
+			
+			request.setAttribute("list", list);
+			
+			conn.close();
+			ps.close();
+			rs.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "rank.jsp";
+	}
 }

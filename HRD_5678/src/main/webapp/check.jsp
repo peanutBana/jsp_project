@@ -26,6 +26,7 @@
 				<th>성명</th>
 				<th>생년월일</th>
 				<th>나이</th>
+				<th>성별</th>				
 				<th>후보번호</th>
 				<th>투표시간</th>
 				<th>유권자확인</th>
@@ -33,8 +34,9 @@
 			<% for (Vote v : list) {%>
 				<tr>  					
 					<td><%=v.getV_name()%></td>
-					<td><%=v.getV_jumin()%></td>
+					<td><%=v.getV_birth()%></td>
 					<td><%=v.getV_age()%></td>					
+					<td><%=v.getV_sex()%></td>					
 					<td><%=v.getM_no()%></td>
 					<td><%=v.getV_time()%></td>
 					<td><%=v.getV_confirm()%></td>		

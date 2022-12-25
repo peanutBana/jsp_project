@@ -42,8 +42,7 @@ public class CandidateController extends HttpServlet {
 	    case "/result":
 	    	site = candidate.result(request, response);  break;
 	    case "/vote": 
-	    	site = "vote.jsp";
-	    	break;
+	    	site = "vote.jsp";  break;
 	    case "/insert":
 	    	int result = candidate.insert(request, response); 
 	         response.setContentType("text/html; charset=UTF-8");
@@ -64,7 +63,7 @@ public class CandidateController extends HttpServlet {
 	    case "/check":
 	    	site = candidate.check(request, response); break;
 	    case "/rank":
-	    	site = candidate.result(request, response);  break;
+	    	site = candidate.rank(request, response);  break;
 	    }
 	    getServletContext().getRequestDispatcher("/" + site).forward(request, response);
 	}	

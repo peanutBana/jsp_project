@@ -9,7 +9,14 @@ public class Candidate {
 	String m_city;
 	String tel;
 	String party;
+	String count;
 	
+	public String getCount() {
+		return count;
+	}
+	public void setCount(String count) {
+		this.count = count;
+	}
 	public String getTel() {
 		return tel;
 	}
