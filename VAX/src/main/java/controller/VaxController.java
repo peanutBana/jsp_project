@@ -62,7 +62,8 @@ public class VaxController extends HttpServlet {
 			            out.println("</script>");
 			            out.flush();
 			         } 
-			    	break;	         
+			    	break;
+		         
 		      case "/list":
 		    	  site = vax.list(request, response); break;
 		      case "/statics":

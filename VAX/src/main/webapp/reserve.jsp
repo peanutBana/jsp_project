@@ -13,6 +13,7 @@
 <section>
 	<div class="title">백신접종예약</div>
 	<form name="frm" action="insert">
+	<input type="hidden" id="GUBUN" value="insert">
 		<div class="wrapper">
 			<table>
 				<tr>
@@ -47,7 +48,6 @@
 				</tr>
 			</table>
 		</div>
-		
 	</form>
 </section> 
 
