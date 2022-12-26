@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletConfig;
@@ -27,10 +25,14 @@ public class BoardController extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
     	super.init(config);
-    	
-    	//init은 서불릿 객체 생성시 딱 한번만 실행됨
     	dao = new BoardDAO();
+    	ctx = getServletContext();
+    	//init은 서불릿 객체 생성시 딱 한번만 실행됨
     	
+    }
+
+    public BoardController() {
+       super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,6 +41,7 @@ public class BoardController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		doPro(request, response);
 	}
 	
@@ -60,10 +63,14 @@ public class BoardController extends HttpServlet {
 		case "/insert":
 			site = insertBoard(request);
 			break;
+			
 		}
+		/*
+		redirect :URL의 변화 O, 객체의 재사용 X (request, response객)
+		DB에 변화가 생기는 요청에 사용(글쓰기, 회원가입) insert, update, delete
 		
-		// redirect url 변화 O / forward : X
-		
+		forward : URL의 변화 X, 객체의 재사용 O 
+		 * */
 		if(site.startsWith("redirect:/")) {		//redirect
 			String rview = site.substring("redirect:/".length());
 			System.out.println(rview);
@@ -92,6 +99,7 @@ public class BoardController extends HttpServlet {
 		int board_no = Integer.parseInt(request.getParameter("board_no"));
 		
 		try {
+			dao.updateViews(board_no);
 			Board b = dao.getView(board_no);
 			request.setAttribute("board", b);
 			
@@ -104,18 +112,26 @@ public class BoardController extends HttpServlet {
 		return "view.jsp"; 
 	}
 	
-	public String insertBoard(HttpServletRequest request) throws Exception{
-		Board b = new Board();
-		try {
-			BeanUtils.populate(b, request.getParameterMap());
-			dao.insertBoard(b);
-			
-		} catch (IllegalAccessException | InvocationTargetException e) {
-			e.printStackTrace();ctx.log("추가 과정에서 문제 발생");
-			request.setAttribute("error","게시글이 정상적으로 등록되지 않았습니다!");
-			return getList(request);
-		}
-		return "redirect:/list";
-	}
+	
+	public String insertBoard(HttpServletRequest request) {
+	      Board b = new Board();
+	      // 이런 과정 생략 가능
+//	      b.setUser_id(request.getParameter("user_id");
+
+	      try {
+	         BeanUtils.populate(b, request.getParameterMap());
+	         dao.insertBoard(b);
+
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	         ctx.log("추가 과정에서 문제 발생");
+
+	         // 사용자 한테 에러메시지 보여주기 위해 저장
+	         request.setAttribute("error", "게시글을 정상적으로 등록되지 않았습니다!");
+	         return getList(request);
+	      }
+	      return "redirect:/list";
+
+	   }
 	
 }
