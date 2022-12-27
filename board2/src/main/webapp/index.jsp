@@ -47,6 +47,9 @@
 		</div>
 	</div>
 	<script>
+	  <c:if test="${param.error != null}">
+	    alert("${error}");
+	  </c:if> 
 	  <c:if test="${error != null}">
 	    alert("${error}");
 	  </c:if>

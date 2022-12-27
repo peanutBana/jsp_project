@@ -10,20 +10,23 @@ public class BoardDAO {
    final String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:xe";
 
    // DB와 연결 수행 메소드
-   public Connection open() throws Exception {
-	      Connection conn = null;
-	      Class.forName(JDBC_DRIVER);
-	      conn = DriverManager.getConnection(JDBC_URL, "test", "test1234");
-
-	      return conn;
-	   }
+   public Connection open() {
+		Connection conn = null;
+		try {
+			Class.forName(JDBC_DRIVER);
+			conn = DriverManager.getConnection(JDBC_URL, "test", "test1234");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return conn; //데이터 베이스의 연결 객체를 리턴
+	}
 
    
    // 게시판 리스트 가져오기
    public ArrayList<Board> getList() throws Exception {
 	   ArrayList<Board> boardList = new ArrayList<>(); // 데이터 저장할 배열
-	   String sql = "select board_no ,title, user_id, to_char(reg_date, 'yyyy.mm.dd') reg_date, views from board";
-
+	   String sql = "select board_no, title, user_id, to_char(reg_date, 'yyyy.mm.dd') reg_date, views from board";
       // 리소스 자동 닫기(try-with-resource)
       // try 괄호안에 변수명을 적으면 알아서 적용이 된다
       try(
@@ -98,5 +101,64 @@ public class BoardDAO {
 		}
 		
 	}
+	
+	public Board getViewForEdit(int board_no) throws Exception {
+		Board b = new Board();
+		String sql = "select board_no, title, user_id, to_char(reg_date, 'yyyy.mm.dd') reg_date, views, content from board where board_no = ?";
+		
+		try(
+				Connection conn = open();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				) {
+			pstmt.setInt(1, board_no);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				b.setBoard_no(rs.getInt(1));
+				b.setTitle(rs.getString(2));
+				b.setUser_id(rs.getString(3));
+				b.setReg_date(rs.getString(4));
+				b.setViews(rs.getInt(5));
+				b.setContent(rs.getString(6));
+			}
+			return b;
+		}
+	}
+	//게시판 글 수정
+	public void updateBoard(Board  b) throws Exception {
+		String sql = "update board set title = ?, user_id = ?, content = ? where board_no = ?";
+		
+		try (
+			Connection conn = open();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+				) {
+			pstmt.setString(1, b.getTitle());
+			pstmt.setString(2, b.getUser_id());
+			pstmt.setString(3, b.getContent());
+			pstmt.setInt(4, b.getBoard_no());
+			pstmt.executeUpdate();
+			
+			//수정된 글이 없을 경우
+			if(pstmt.executeUpdate()!= 1) {
+				throw new Exception("DB에러");
+			}
+		}
+	}
+	//게시글 삭제
+	public void deleteBoard(int board_no) throws Exception{
+		String sql = "delete from board where board_no = ?";
 
+		try (
+				Connection conn = open();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+					) {
+				pstmt.setInt(1, board_no);
+				
+				
+				//수정된 글이 없을 경우
+				if(pstmt.executeUpdate()!= 1) {
+					throw new Exception("삭제된 글이 없습니다!");
+				}
+			}
+		
+	}
 }

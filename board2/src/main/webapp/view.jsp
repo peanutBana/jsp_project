@@ -40,7 +40,7 @@
 						<dt><a href="#" onclick="chkDelete(${board.board_no}); return false;">삭제하기</a></dt>
 					</dl>
 				</div>
-				<div class="cont"  style="white-space:pre-wrap;">${board.content}</div>
+				<div class="cont"  style="white-space:pre-wrap;">${board.content}</div>		
 			</div>
 			<div class="bt_wrap">
 				<a href="list" class="on">목록</a> <a href="edit?board_no=${board.board_no}">수정</a>
@@ -48,9 +48,12 @@
 		</div>
 	</div>
 	<script>
-	  <c:if test="${error != null}">
-	    alert("${error}");
-	  </c:if>
+	<c:if test="${param.error != null}">
+    alert("${error}");
+  </c:if> 
+  <c:if test="${error != null}">
+    alert("${error}");
+  </c:if>
 	</script>
 	<script type="text/javascript" src="./script.js"></script>
 </body>
