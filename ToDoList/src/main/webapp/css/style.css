@@ -4,7 +4,7 @@
   padding: 0;
 }
 
-html {
+body {
   font-size: 10px;
   background: #FE9F9F; 	
 }
@@ -17,10 +17,20 @@ header{
     background: #FFBDAE;
     font-size: 50px;
 }
+
+legend{
+	font-size: 40px;
+	text-align: center;
+}
+
+fieldset{
+	padding:30px;
+}
+
 section{
 	width:1000px;
-	height: 100%;
-	margin: 200px auto ; 
+	height: 780px;
+	margin: 0 auto ; 
 	display: flex;
 	flex-direction: row;	
 	justify-content: center;
@@ -28,18 +38,7 @@ section{
 }
 
 label{
-	font-size: 50px;
-}
-
-.side{
-	position: fixed;
-	left:0;
-	width: 300px;
-}
-
-.main{
-	background: #F4C0C0;
-	width: 100%;
+	font-size: 40px;
 }
 
 footer{
@@ -52,4 +51,11 @@ footer{
     font-size: 50px;
     background: #B69292;
     color: white;
+}
+input.init{
+	width: 120px;
+	height: 30px;
+}
+.btns{
+	text-align: center;
 }

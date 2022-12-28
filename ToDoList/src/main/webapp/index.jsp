@@ -6,10 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/style.css" />
-
+<%
+	String name = request.getParameter("username");
+	int id = Integer.parseInt(request.getParameter("userid")); 
+%>
 </head>
 <body>
-	<header>ToDo List</header>
+	<header><%=name%>님 의 TodoList, 아이디는<%=id%></header>
 		<section>
 			
 		</section>
