@@ -71,8 +71,7 @@ public class BoardDAO {
 			return b;
 		}
 	}
-	
-   
+
   //조회수 증가
 	public void updateViews(int board_no) throws Exception {
 		String sql = "update board set views = (views + 1) where board_no = ?";
@@ -152,7 +151,6 @@ public class BoardDAO {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 					) {
 				pstmt.setInt(1, board_no);
-				
 				
 				//수정된 글이 없을 경우
 				if(pstmt.executeUpdate()!= 1) {

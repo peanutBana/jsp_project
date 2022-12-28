@@ -3,4 +3,10 @@
 	<list key="MRU_RUNTIME_STORE">
 		<item value="Apache Tomcat v9.0"/>
 	</list>
+	<list key="J2EE_IMPORT_null">
+		<item value="/Users/alsdn/Downloads/board.war"/>
+		<item value="/Users/alsdn/Downloads/HRD_1234-easy.war"/>
+		<item value="/Users/alsdn/Downloads/HRD_5678.war"/>
+		<item value="/Users/alsdn/Downloads/HRD_1234.war"/>
+	</list>
 </section>
