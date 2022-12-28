@@ -27,7 +27,12 @@ fieldset{
 	padding:30px;
 }
 
-section{
+p {
+	font-size: 30px;
+	margin: 20px;
+}
+
+main{
 	width:1000px;
 	height: 780px;
 	margin: 0 auto ; 
@@ -35,6 +40,58 @@ section{
 	flex-direction: row;	
 	justify-content: center;
 	align-items: center;
+}
+.init{
+	vertical-align: middle;
+}
+
+section{
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.insert{
+	text-align:center;	
+	margin: 30px;
+}
+
+.list{		/*해야 할 일 추가*/
+	display: flex;
+	flex-direction: row;
+}
+
+.list .undo{
+	width: 50%;
+}
+
+undo ul{
+	list-style-type: square;
+	
+}
+
+
+ul li{
+	display: flex;
+	justify-content: space-between;	
+	font-size: 30px;
+}
+
+.list .comp{
+	width: 50%;
+}
+
+vr { 
+    width:1px;
+   
+    background-color:#000;
+    margin: 0 30px;
+}
+
+.content{ 
+	width: 500px;
+	height: 30px;
+	line-height: 30px;
+	vertical-align: middle;
 }
 
 label{
@@ -52,10 +109,12 @@ footer{
     background: #B69292;
     color: white;
 }
+
 input.init{
 	width: 120px;
 	height: 30px;
 }
+
 .btns{
 	text-align: center;
 }

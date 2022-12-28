@@ -10,10 +10,10 @@
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	<section>
+	<main>
 		<fieldset>
 		<legend>로그인</legend>
-			<form method="post" name="frm" action="index.jsp" >
+			<form method="post" name="frm_login" action="index.jsp" >
 				<label>이름을 입력해주세요 : <input class="init" type="text" name="username"></label><br>
 				<label>아이디도 입력해주세요 : <input class="init" type="text" name="userid"></label><br>
 				<div class="btns">
