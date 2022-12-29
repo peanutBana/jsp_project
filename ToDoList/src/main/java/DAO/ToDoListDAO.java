@@ -1,5 +1,49 @@
 package DAO;
 
-public class ToDoListDAO {
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
+import DTO.ToDo;
+
+public class ToDoListDAO {
+	final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
+	   final String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+
+	   // DB와 연결 수행 메소드
+	   public Connection open() {
+			Connection conn = null;
+			try {
+				Class.forName(JDBC_DRIVER);
+				conn = DriverManager.getConnection(JDBC_URL, "test", "test1234");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return conn; //데이터 베이스의 연결 객체를 리턴
+		}
+	   
+	   public ArrayList<ToDo> getList() throws Exception{
+		   ArrayList<ToDo> toDoList = new ArrayList<>();
+		   String sql = "select todo_id, todo_title, user_id, todo_memo from todo";
+		   
+		   try(
+				   Connection conn = open();
+	    	        PreparedStatement pstmt = conn.prepareStatement(sql); // 쿼리문 등록 -> 컴파일
+					ResultSet rs = pstmt.executeQuery();  
+		   ){
+			   while(rs.next()) {
+				   ToDo td = new ToDo();
+				   td.setTodoId(rs.getInt(1));
+				   td.setTodoTitle(rs.getString(2));
+				   td.setUserId(rs.getInt(3));
+				   td.setTodoMemo(rs.getString(4));
+				   
+				   toDoList.add(td);
+			   }
+			   return toDoList;
+		   }
+	   }
 }

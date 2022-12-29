@@ -5,7 +5,6 @@ public class ToDo {
 	private String todoTitle;
 	private int userId;
 	private String todoMemo;
-	private boolean isChecked;
 	
 	public int getTodoId() {
 		return todoId;

@@ -82,10 +82,10 @@ ul li{
 
 vr { 
     width:1px;
-   
     background-color:#000;
     margin: 0 30px;
 }
+
 
 .content{ 
 	width: 500px;
@@ -95,8 +95,12 @@ vr {
 }
 
 label{
-	font-size: 40px;
+	font-size: 35px;
+		
+	justify-content: space-between;	
 }
+
+input::placeholder { text-align: center; }
 
 footer{
     position: fixed;
@@ -115,6 +119,11 @@ input.init{
 	height: 30px;
 }
 
+.btn{
+	text-align: center;	
+}
+
 .btns{
-	text-align: center;
+	width: 60px;
+	height: 30px;
 }
