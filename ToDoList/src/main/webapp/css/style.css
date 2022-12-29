@@ -50,8 +50,10 @@ section{
 	margin: 0 auto;
 }
 
-.insert{
-	text-align:center;	
+.insert form{
+	display: flex;
+	flex-direction: rows;
+	text-align:center;	 
 	margin: 30px;
 }
 
@@ -96,10 +98,12 @@ vr {
 
 label{
 	font-size: 35px;
-		
+	display: flex;
 	justify-content: space-between;	
 }
-
+ label input{
+ 	margin: 0 10px;
+ }
 input::placeholder { text-align: center; }
 
 footer{
@@ -124,6 +128,6 @@ input.init{
 }
 
 .btns{
-	width: 60px;
+	width: 65px;
 	height: 30px;
 }

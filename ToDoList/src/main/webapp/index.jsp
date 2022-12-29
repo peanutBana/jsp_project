@@ -15,14 +15,16 @@
 		<legend>로그인</legend>
 			<form method="post" name="frm_login" action="list" >
 				<label>이름을 입력해주세요 : <input class="init" type="text" name="username"></label><br>
-				<label>아이디도 입력해주세요 : <input class="init" type="text" name="userid"></label><br>
-				<div class="btns">
-					<button type="submit" onclick="location.href='index.html'">로그인</button> 
-					<button type="reset" onclick="reset_alert()">다시하기</button>
+				<label>아이디 입력해주세요 : <input class="init" type="text" name="userid"></label><br>
+				<div class="btn">
+					<button class="btns" type="submit" onclick="fn_login_submit()">로그인</button> 
+				<button class="btns" type="reset" onclick="reset_alert()">다시하기</button>
 				</div>
+				
+			
 			</form>
 		</fieldset>
-	</section>
+	</main>
 	<%@ include file="footer.jsp"%>
 </body>
 </html>

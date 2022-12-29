@@ -53,7 +53,7 @@ public class ToDoListController extends HttpServlet {
           String site = null;
           
           switch(command) {
-          case "/index":
+          case "/list":
           	site = getList(request);
           	break;
           }
@@ -79,7 +79,7 @@ public class ToDoListController extends HttpServlet {
 			request.setAttribute("error", "ToDo List 불러오기가 정상적으로 처리되지 않았습니다."); 
 		}
 
-    	  return "index.jsp";
+    	  return "list.jsp";
       }
           
 }
