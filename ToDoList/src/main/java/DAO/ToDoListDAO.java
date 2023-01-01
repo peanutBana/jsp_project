@@ -46,4 +46,8 @@ public class ToDoListDAO {
 			   return toDoList;
 		   }
 	   }
+	   
+	   public void insertTodo(ToDo td) {
+		   String sql = "INSERT INTO TODO ('TODO_TITLE') VALUES(?)";
+	   }
 }

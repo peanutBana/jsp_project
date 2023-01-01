@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import javax.servlet.ServletConfig;
@@ -10,6 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import DAO.ToDoListDAO;
 import DTO.ToDo;
@@ -56,6 +59,9 @@ public class ToDoListController extends HttpServlet {
           case "/list":
           	site = getList(request);
           	break;
+//          case "/insert":
+//            	site = insertTodo(request);
+//            	break;
           }
           
           if (site.startsWith("redirect:/")) {
@@ -81,5 +87,17 @@ public class ToDoListController extends HttpServlet {
 
     	  return "list.jsp";
       }
+      
+//      public String insertTodo(HttpServletRequest request) {
+//    	  ToDo td = new ToDo();
+//    	  dao.insertTodo();
+//    	  
+//    	  try {
+//			BeanUtils.populate(td, request.getParameterMap());
+//			
+//		} catch (IllegalAccessException | InvocationTargetException e) {
+//			e.printStackTrace();
+//		}
+//      }
           
 }
