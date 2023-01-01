@@ -17,7 +17,7 @@ public class ToDoListDAO {
 			Connection conn = null;
 			try {
 				Class.forName(JDBC_DRIVER);
-				conn = DriverManager.getConnection(JDBC_URL, "test", "test1234");
+				conn = DriverManager.getConnection(JDBC_URL, "todo", "todo1234");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
