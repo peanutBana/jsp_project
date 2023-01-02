@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URLEncoder;
 import java.util.List;
 
@@ -77,10 +76,13 @@ public class ToDoListController extends HttpServlet {
       
       public String getList(HttpServletRequest request) {
     	  List<ToDo> list;
+    	  List<ToDo> list_fin;
     	  
     	  try {
 			list = dao.getList();
 			request.setAttribute("todoList", list);
+			list_fin = dao.getListFin();
+			request.setAttribute("todoListFin", list_fin);
 		} catch (Exception e) {
 			e.printStackTrace();
 			ctx.log("ToDo List 불러오는 과정에서 문제발생!");
@@ -108,7 +110,7 @@ public class ToDoListController extends HttpServlet {
 	             e1.printStackTrace();
 	          }
 	          // 사용자 한테 에러메시지 보여주기 위해 저장
-	          request.setAttribute("error", "게시글이 정상적으로 등록되지 않았습니다!");
+	          request.setAttribute("error", "todo가 정상적으로 등록되지 않았습니다!");
 	          return getList(request);
 		}
     	  return "redirect:/list";

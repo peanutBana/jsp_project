@@ -19,9 +19,7 @@
 				<div class="btn">
 					<button class="btns" type="submit" onclick="fn_login_submit()">로그인</button> 
 					<button class="btns" type="reset" onclick="reset_alert()">다시하기</button>
-				</div>
-				
-			
+				</div>		
 			</form>
 		</fieldset>
 	</main>

@@ -62,6 +62,10 @@ section{
 	flex-direction: row;
 }
 
+ul li{
+	list-style: none;
+}
+
 .list .undo{
 	width: 50%;
 }
@@ -72,13 +76,13 @@ undo ul{
 }
 
 
-ul li{
+.item{
 	display: flex;
 	justify-content: space-between;	
 	font-size: 30px;
 }
 
-.list .comp{
+.list .fin{
 	width: 50%;
 }
 
@@ -101,9 +105,11 @@ label{
 	display: flex;
 	justify-content: space-between;	
 }
+
  label input{
  	margin: 0 10px;
  }
+ 
 input::placeholder { text-align: center; }
 
 footer{

@@ -27,25 +27,26 @@
 					<ul>
 					<c:forEach var="todo" items="${todoList}" varStatus="status">
 						<li>
-							<input type=checkbox name="todo_chk">
-							<div class="todo_title">${todo.todoTitle}</div>
-							<div class="a"><a href="#">edit</a>&nbsp;&nbsp;<a href="#">delete</a></div>
+							<div class="item">
+								<input type=checkbox name="todo_chk">
+								<div class="todo_title">${todo.todoTitle}</div>
+								<div class="a"><a href="#">edit</a>&nbsp;&nbsp;<a href="#">delete</a></div>
+							</div>
 						</li>
 					</c:forEach>
-						<!-- <li><div class="todo_title">•강아지 산책시키기</div><div class="a"><a href="#">edit</a>&nbsp;&nbsp;<a href="#">delete</a></div></li>
-						<li><div class="todo_title">•개인 프로젝트</div><div class="a"><a href="#">edit</a>&nbsp;&nbsp;<a href="#">delete</a></div></li>
-						<li><div class="todo_title">•spring 예습</div><div class="a"><a href="#">edit</a>&nbsp;&nbsp;<a href="#">delete</a></div></li> -->
 					</ul>
 				</div>
 				<vr></vr>
-				<div class="comp">
+				<div class="fin">
 					<p>완료한 목록</p>
 					<ul>
-					<c:forEach var="todo" items="${todoList}" varStatus="status">
+					<c:forEach var="todo" items="${todoListFin}" varStatus="status">
 						<li>
-							<input type=checkbox name="todo_chk">
-							<div class="todo_title">${todo.todoTitle}</div>
-							<div class="a"><a href="#">edit</a>&nbsp;&nbsp;<a href="#">delete</a></div>
+							<div class="item">
+								<input type=checkbox name="todo_chk">
+								<div class="todo_title">${todo.todoTitle}</div>
+								<div class="a"><a href="#">delete</a></div>
+							</div>
 						</li>
 					</c:forEach>
 					</ul>
