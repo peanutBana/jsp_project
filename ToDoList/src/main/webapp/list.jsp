@@ -13,7 +13,7 @@
 %>
 </head>
 <body>
-	<header><%=name%>님 의 TodoList, 아이디는<%=id%></header>
+	<header>[<%=name%>]님의 TodoList, 아이디는 <%=id%></header>
 		<section>
 			<div class="insert">
 				<form method="post" name="frm_todo" action="insert">
@@ -26,7 +26,11 @@
 					<p>할 일 목록</p>
 					<ul>
 					<c:forEach var="todo" items="${todoList}" varStatus="status">
-						<li><div class="todo_title">•${todo.todoTitle}</div><div class="a"><a href="#">edit</a>&nbsp;&nbsp;<a href="#">delete</a></div></li>
+						<li>
+							<input type=checkbox name="todo_chk">
+							<div class="todo_title">${todo.todoTitle}</div>
+							<div class="a"><a href="#">edit</a>&nbsp;&nbsp;<a href="#">delete</a></div>
+						</li>
 					</c:forEach>
 						<!-- <li><div class="todo_title">•강아지 산책시키기</div><div class="a"><a href="#">edit</a>&nbsp;&nbsp;<a href="#">delete</a></div></li>
 						<li><div class="todo_title">•개인 프로젝트</div><div class="a"><a href="#">edit</a>&nbsp;&nbsp;<a href="#">delete</a></div></li>
@@ -37,9 +41,13 @@
 				<div class="comp">
 					<p>완료한 목록</p>
 					<ul>
-						<!-- <li><div class="todo_title">•html 공부</div><a href="#">delete</a></li>
-						<li><div class="todo_title">•css 공부</div><a href="#">delete</a></li></li>
-						<li><div class="todo_title">•javascript 공부</div><a href="#">delete</a></li></li> -->
+					<c:forEach var="todo" items="${todoList}" varStatus="status">
+						<li>
+							<input type=checkbox name="todo_chk">
+							<div class="todo_title">${todo.todoTitle}</div>
+							<div class="a"><a href="#">edit</a>&nbsp;&nbsp;<a href="#">delete</a></div>
+						</li>
+					</c:forEach>
 					</ul>
 				</div>
 			</div>

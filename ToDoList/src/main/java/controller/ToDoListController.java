@@ -1,7 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.ServletConfig;
@@ -59,9 +61,9 @@ public class ToDoListController extends HttpServlet {
           case "/list":
           	site = getList(request);
           	break;
-//          case "/insert":
-//            	site = insertTodo(request);
-//            	break;
+          case "/insert":
+           	site = insertTodo(request);
+           	break;
           }
           
           if (site.startsWith("redirect:/")) {
@@ -88,16 +90,28 @@ public class ToDoListController extends HttpServlet {
     	  return "list.jsp";
       }
       
-//      public String insertTodo(HttpServletRequest request) {
-//    	  ToDo td = new ToDo();
-//    	  dao.insertTodo();
-//    	  
-//    	  try {
-//			BeanUtils.populate(td, request.getParameterMap());
-//			
-//		} catch (IllegalAccessException | InvocationTargetException e) {
-//			e.printStackTrace();
-//		}
-//      }
+      public String insertTodo(HttpServletRequest request) {
+    	  ToDo td = new ToDo();
+    	  
+    	  try {
+			BeanUtils.populate(td, request.getParameterMap());
+			dao.insertTodo(td);
+			
+    	} catch (Exception e) {
+			e.printStackTrace();
+	         ctx.log("추가 과정에서 문제 발생");
+	         
+	         try {
+	             String encodeName = URLEncoder.encode("게시물이 정상적으로 등록되지 않았습니다!", "UTF-8");
+	             return "redirect:/list?error=" + encodeName;
+	          } catch (UnsupportedEncodingException e1) {
+	             e1.printStackTrace();
+	          }
+	          // 사용자 한테 에러메시지 보여주기 위해 저장
+	          request.setAttribute("error", "게시글이 정상적으로 등록되지 않았습니다!");
+	          return getList(request);
+		}
+    	  return "redirect:/list";
+      }
           
 }

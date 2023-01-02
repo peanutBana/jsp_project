@@ -27,12 +27,12 @@ public class ToDoListDAO {
 	   
 	   public ArrayList<ToDo> getList() throws Exception{
 		   ArrayList<ToDo> toDoList = new ArrayList<>();
-		   String sql = "select todo_id, todo_title, user_id, todo_memo from todo";
+		   String sql = "select todo_id, todo_title, user_id, todo_memo from todo where is_finished = 'n'";
 		   
 		   try(
 				   Connection conn = open();
-	    	        PreparedStatement pstmt = conn.prepareStatement(sql); // 쿼리문 등록 -> 컴파일
-					ResultSet rs = pstmt.executeQuery();  
+	    	       PreparedStatement pstmt = conn.prepareStatement(sql); // 쿼리문 등록 -> 컴파일
+				   ResultSet rs = pstmt.executeQuery();  
 		   ){
 			   while(rs.next()) {
 				   ToDo td = new ToDo();
@@ -47,7 +47,15 @@ public class ToDoListDAO {
 		   }
 	   }
 	   
-	   public void insertTodo(ToDo td) {
-		   String sql = "INSERT INTO TODO ('TODO_TITLE') VALUES(?)";
+	   public void insertTodo(ToDo td) throws Exception{
+		   String sql = "INSERT INTO TODO (TODO_TITLE) VALUES(?)";
+		   
+		   try(
+					Connection conn = open();
+					PreparedStatement pstmt = conn.prepareStatement(sql);
+					){
+				pstmt.setString(1,td.getTodoTitle());
+				pstmt.executeUpdate();
+			}
 	   }
 }
