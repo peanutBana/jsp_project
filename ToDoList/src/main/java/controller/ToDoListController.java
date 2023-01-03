@@ -12,11 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
 import DAO.ToDoListDAO;
 import DTO.ToDo;
+import DTO.User;
 
 
 @WebServlet("/")
@@ -24,7 +26,6 @@ public class ToDoListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ToDoListDAO dao;
 	private ServletContext ctx;
-
     
     @Override
 	public void init(ServletConfig config) throws ServletException {
@@ -55,6 +56,13 @@ public class ToDoListController extends HttpServlet {
     	  String context = request.getContextPath();
           String command = request.getServletPath();
           String site = null;
+          User user = new User();
+          
+          user.setUserId(1);
+          user.setUserName("박민우");
+          
+          HttpSession session = request.getSession();
+          session.setAttribute("userInfo", user);
           
           switch(command) {
           case "/list":
