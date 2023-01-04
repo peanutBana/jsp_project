@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="DTO.User" %>
+<%@ page import="DTO.User" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,8 +12,6 @@
 	User user = (User)session.getAttribute("user");
 	String name = user.getUserName();
 	int id = user.getUserId();
-	
-	
 %>
 </head>
 <body>

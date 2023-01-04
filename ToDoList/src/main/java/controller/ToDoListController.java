@@ -60,8 +60,10 @@ public class ToDoListController extends HttpServlet {
           
           HttpSession session = request.getSession();	//세션 값을 가져온다.
           User user = new User();
-          user.setUserId(1);
-          user.setUserName("박민우");
+//          
+
+          user.setUserId(100);
+          user.setUserName("박민");
           session.setAttribute("user", user);		
           
           switch(command) {

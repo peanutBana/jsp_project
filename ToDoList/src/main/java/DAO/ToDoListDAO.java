@@ -75,7 +75,7 @@ public class ToDoListDAO {
 	   }
 	   
 	   public void insertTodo(ToDo td) throws Exception{
-		   String sql = "INSERT INTO TODO (TODO_TITLE, IS_FINISHED) VALUES(?, 'n')";
+		   String sql = "INSERT INTO TODO (TODO_ID, TODO_TITLE, IS_FINISHED) VALUES(todo_seq.nextval, ?, 'n')";
 		   
 		   try(
 					Connection conn = open();
