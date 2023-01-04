@@ -56,13 +56,13 @@ public class ToDoListController extends HttpServlet {
     	  String context = request.getContextPath();
           String command = request.getServletPath();
           String site = null;
-          User user = new User();
           
+          
+          HttpSession session = request.getSession();	//세션 값을 가져온다.
+          User user = new User();
           user.setUserId(1);
           user.setUserName("박민우");
-          
-          HttpSession session = request.getSession();
-          session.setAttribute("userInfo", user);
+          session.setAttribute("user", user);		
           
           switch(command) {
           case "/list":

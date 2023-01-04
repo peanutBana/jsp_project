@@ -6,11 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import DTO.ToDo;
+import DTO.User;
 
 public class ToDoListDAO {
 	final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
-	   final String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+	final String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+	   
+
 
 	   // DB와 연결 수행 메소드
 	   public Connection open() {

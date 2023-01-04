@@ -78,8 +78,12 @@ undo ul{
 
 .item{
 	display: flex;
-	justify-content: space-between;	
+	justify-content: space-between;
 	font-size: 30px;
+}
+
+.item input{
+	margin-right: 20px;
 }
 
 .list .fin{
