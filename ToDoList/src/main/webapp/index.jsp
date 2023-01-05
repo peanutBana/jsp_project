@@ -8,9 +8,7 @@
 	<link rel="stylesheet" href="./css/style.css" />
 	<script type="text/javascript" src="./javascript/script.js"></script>
 </head>
-<%
-	
-%>
+
 <body>
 	<%@ include file="header.jsp"%>
 	<main>

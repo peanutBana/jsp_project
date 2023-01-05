@@ -32,7 +32,7 @@
 							<div class="item">
 								<input type=checkbox name="todo_chk">
 								<div class="todo_title">${todo.todoTitle}</div>
-								<div class="a"><a href="#">edit</a>&nbsp;&nbsp;<a href="#">delete</a></div>
+								<div class="a"><a href="#">edit</a>&nbsp;&nbsp;<a href="chkDelete(${todo.todoId}); return false;">delete</a></div>
 							</div>
 						</li>
 					</c:forEach>
@@ -47,7 +47,7 @@
 							<div class="item">
 								<input type=checkbox name="todo_chk">
 								<div class="todo_title">${todo.todoTitle}</div>
-								<div class="a"><a href="#">delete</a></div>
+								<div class="a"><a href="chkDelete(${todo.todoId}); return false;">delete</a></div>
 							</div>
 						</li>
 					</c:forEach>
@@ -56,5 +56,14 @@
 			</div>
 		</section>
 	<footer>footer area</footer>
+	<script>
+	  <c:if test="${param.error != null}">
+	    alert("${error}");
+	  </c:if> 
+	  <c:if test="${error != null}">
+	    alert("${error}");
+	  </c:if>
+	</script>
+	<script type="text/javascript" src="./script.js"></script>
 </body>
 </html>

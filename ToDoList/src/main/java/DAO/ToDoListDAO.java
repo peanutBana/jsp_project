@@ -85,4 +85,20 @@ public class ToDoListDAO {
 				pstmt.executeUpdate();
 			}
 	   }
+	   
+	   public void deleteTodo(int todoId) throws Exception{
+		   String sql = "delete from todo where todo_id = ?";
+		   
+		   try (
+					Connection conn = open();
+					PreparedStatement pstmt = conn.prepareStatement(sql);
+						) {
+					pstmt.setInt(1, todoId);
+					
+					//수정된 글이 없을 경우
+					if(pstmt.executeUpdate()!= 1) {
+						throw new Exception("삭제된 글이 없습니다!");
+					}
+				}
+		}
 }

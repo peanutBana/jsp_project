@@ -31,7 +31,7 @@ public class ToDoListController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		dao = new ToDoListDAO();
-		ctx = getServletContext(); 
+		ctx = getServletContext();
 	}
 
 	public ToDoListController() {
@@ -53,17 +53,19 @@ public class ToDoListController extends HttpServlet {
       protected void doPro(HttpServletRequest request, HttpServletResponse response)
     	         throws ServletException, IOException{
     	  
+    	  
     	  String context = request.getContextPath();
           String command = request.getServletPath();
           String site = null;
           
-          
           HttpSession session = request.getSession();	//세션 값을 가져온다.
           User user = new User();
-//          
-
+          String name = request.getParameter("username");
+          int id = Integer.parseInt(request.getParameter("userid"));
           user.setUserId(100);
-          user.setUserName("박민");
+          user.setUserName("박민우");
+//          user.setUserId(id);
+//          user.setUserName(name);
           session.setAttribute("user", user);		
           
           switch(command) {
@@ -73,6 +75,9 @@ public class ToDoListController extends HttpServlet {
           case "/insert":
            	site = insertTodo(request);
            	break;
+          case "/delete":
+             site = insertTodo(request);
+             break;
           }
           
           if (site.startsWith("redirect:/")) {
@@ -125,5 +130,23 @@ public class ToDoListController extends HttpServlet {
 		}
     	  return "redirect:/list";
       }
-          
+      
+      public String deleteTodo(HttpServletRequest request) {
+    	  int todoId = Integer.parseInt(request.getParameter("todoId"));
+    	  
+    	  try {
+   		   dao.deleteTodo(todoId);
+   	   }catch(Exception e) {
+   		   e.printStackTrace();
+   		   ctx.log("Todo을 삭제하는 과정에서 문제 발생");
+   		   String encodeName;
+   		   try {
+   			   encodeName = URLEncoder.encode("Todo가 정상적으로 삭제되지 않았습니다!","UTF-8");
+   		   }catch(UnsupportedEncodingException e1) {
+   			   e1.printStackTrace();
+   		   }
+   	   }
+   	   return "redirect:/list?todoId=" + todoId;
+      }
+  
 }
