@@ -53,21 +53,10 @@ public class ToDoListController extends HttpServlet {
       protected void doPro(HttpServletRequest request, HttpServletResponse response)
     	         throws ServletException, IOException{
     	  
-    	  
     	  String context = request.getContextPath();
           String command = request.getServletPath();
           String site = null;
-          
-          HttpSession session = request.getSession();	//세션 값을 가져온다.
-          User user = new User();
-          String name = request.getParameter("username");
-          int id = Integer.parseInt(request.getParameter("userid"));
-          user.setUserId(100);
-          user.setUserName("박민우");
-//          user.setUserId(id);
-//          user.setUserName(name);
-          session.setAttribute("user", user);		
-          
+         
           switch(command) {
           case "/list":
           	site = getList(request);
@@ -95,8 +84,11 @@ public class ToDoListController extends HttpServlet {
     	  List<ToDo> list_fin;
     	  
     	  try {
+    		//수행 전 todo list
 			list = dao.getList();
 			request.setAttribute("todoList", list);
+			
+			//실행 후 todo list
 			list_fin = dao.getListFin();
 			request.setAttribute("todoListFin", list_fin);
 		} catch (Exception e) {
@@ -113,6 +105,7 @@ public class ToDoListController extends HttpServlet {
     	  
     	  try {
 			BeanUtils.populate(td, request.getParameterMap());
+//			td.setTodoTitle(request.getParameter("todo"));
 			dao.insertTodo(td);
 			
     	} catch (Exception e) {
@@ -129,7 +122,7 @@ public class ToDoListController extends HttpServlet {
 	          request.setAttribute("error", "todo가 정상적으로 등록되지 않았습니다!");
 	          return getList(request);
 		}
-    	  return "redirect:/list";
+    	  return "list";
       }
       
       public String deleteTodo(HttpServletRequest request) {
@@ -151,3 +144,4 @@ public class ToDoListController extends HttpServlet {
       }
   
 }
+

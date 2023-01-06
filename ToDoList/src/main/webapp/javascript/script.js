@@ -29,5 +29,7 @@ function fn_todoInput_submit(){
       fn.todo.focus();   //포커싱
       return false; 
 	}
-	
+	else{
+		f.submit();	
+	}
 }

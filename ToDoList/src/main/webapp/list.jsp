@@ -9,9 +9,16 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/style.css" />
 <% 
-	User user = (User)session.getAttribute("user");
-	String name = user.getUserName();
-	int id = user.getUserId();
+	session = request.getSession();
+
+	User user = new User();
+	String name = request.getParameter("username");
+	int id = Integer.parseInt(request.getParameter("userid"));
+		
+	user.setUserId(id);
+    user.setUserName(name);
+    
+    session.setAttribute("user", user);	
 %>
 </head>
 <body>
@@ -20,7 +27,7 @@
 			<div class="insert">
 				<form method="post" name="frm_todo" action="insert">
 					<label>해야 할 일 추가! :<input class="content" type="text" name="todo" maxlength="100" placeholder="할 일을 입력해주세요!"></label>
-					<button class= "btns" type="submit" onclick="#">등록</button>
+					<button class= "btns" type="submit" onclick="fn_todoInput_submit()">등록</button>
 				</form>
 			</div>
 			<div class="list">
@@ -64,6 +71,6 @@
 	    alert("${error}");
 	  </c:if>
 	</script>
-	<script type="text/javascript" src="./script.js"></script>
+	<script type="text/javascript" src="./javascript/script.js"></script>
 </body>
 </html>
