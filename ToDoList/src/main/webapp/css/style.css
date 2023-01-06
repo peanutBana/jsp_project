@@ -34,7 +34,7 @@ p {
 
 main{
 	width:1000px;
-	height: 780px;
+	height: 500px;
 	margin: 0 auto ; 
 	display: flex;
 	flex-direction: row;	

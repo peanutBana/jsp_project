@@ -77,6 +77,7 @@ public class ToDoListController extends HttpServlet {
            	break;
           case "/delete":
              site = insertTodo(request);
+             System.out.println("delete");
              break;
           }
           
