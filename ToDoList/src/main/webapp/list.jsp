@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="./css/style.css" />
 <%
 	String name = (String)session.getAttribute("name");
-	int id = (int)session.getAttribute("id");
+	String id = (String)(session.getAttribute("id"));
 %>
 
 </head>
