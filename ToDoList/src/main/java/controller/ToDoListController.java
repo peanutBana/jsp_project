@@ -56,6 +56,15 @@ public class ToDoListController extends HttpServlet {
     	  String context = request.getContextPath();
           String command = request.getServletPath();
           String site = null;
+          
+          request.setCharacterEncoding("utf-8");
+          String id = request.getParameter("userid");
+          String name = request.getParameter("username");
+          
+          HttpSession session = request.getSession();
+          session.setAttribute("id", id);
+          session.setAttribute("name", name);
+          
          
           switch(command) {
           case "/list":

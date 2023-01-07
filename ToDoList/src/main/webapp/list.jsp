@@ -8,18 +8,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/style.css" />
-<% 
-	session = request.getSession();
-
-	User user = new User();
-	String name = request.getParameter("username");
-	int id = Integer.parseInt(request.getParameter("userid"));
-		
-	user.setUserId(id);
-    user.setUserName(name);
-    
-    session.setAttribute("user", user);	
+<%
+	String name = (String)session.getAttribute("name");
+	int id = (int)session.getAttribute("id");
 %>
+
 </head>
 <body>
 	<header>[<%=name%>]님의 TodoList, 아이디는 <%=id%></header>
