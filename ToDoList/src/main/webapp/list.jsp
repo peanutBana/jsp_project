@@ -9,13 +9,19 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/style.css" />
 <%
-	String name = (String)session.getAttribute("name");
-	String id = (String)(session.getAttribute("id"));
+	
+	String id = request.getParameter("userid");
+    String name = request.getParameter("username");
+    
+    session.setAttribute("id", id);
+    session.setAttribute("name", name);
+	String S_name = (String)session.getAttribute("name");
+	String S_id = (String)(session.getAttribute("id"));
 %>
 
 </head>
 <body>
-	<header>[<%=name%>]님의 TodoList, 아이디는 <%=id%></header>
+	<header>[<%=S_name %>]님의 TodoList, 아이디는 <%=S_id%></header>
 		<section>
 			<div class="insert">
 				<form method="post" name="frm_todo" action="insert">
