@@ -22,6 +22,7 @@
 					<button class="btns" type="reset" onclick="reset_alert()">다시하기</button>
 				</div>		
 			</form>
+			
 		</fieldset>
 	</main>
 	<%@ include file="footer.jsp"%>

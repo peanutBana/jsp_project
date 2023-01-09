@@ -9,6 +9,7 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +20,6 @@ import org.apache.commons.beanutils.BeanUtils;
 import DAO.ToDoListDAO;
 import DTO.ToDo;
 import DTO.User;
-
 
 @WebServlet("/")
 public class ToDoListController extends HttpServlet {
@@ -64,6 +64,7 @@ public class ToDoListController extends HttpServlet {
 //          HttpSession session = request.getSession();
 //          session.setAttribute("id", id);
 //          session.setAttribute("name", name);
+          
 //          
 //          System.out.println(context);
 //          System.out.println(command);
@@ -95,6 +96,19 @@ public class ToDoListController extends HttpServlet {
     	  List<ToDo> list;
     	  List<ToDo> list_fin;
     	  
+    	  //index에서 받아온 id, name저장
+    	  if(request.getParameter("userid") != null && request.getParameter("username") != null) {
+    		  int id = Integer.parseInt(request.getParameter("userid"));
+    		  String name = request.getParameter("username");
+    		  
+    		  HttpSession session = request.getSession();
+    		  //세션에 id, name 저장
+    		  session.setAttribute("id", id);
+    		  session.setAttribute("name", name);
+    	  }
+    	  
+    	  System.out.println();
+   
     	  try {
     		//수행 전 todo list
 			list = dao.getList();
@@ -103,6 +117,7 @@ public class ToDoListController extends HttpServlet {
 			//실행 후 todo list
 			list_fin = dao.getListFin();
 			request.setAttribute("todoListFin", list_fin);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			ctx.log("ToDo List 불러오는 과정에서 문제발생!");
@@ -134,7 +149,7 @@ public class ToDoListController extends HttpServlet {
 	          request.setAttribute("error", "todo가 정상적으로 등록되지 않았습니다!");
 	          return getList(request);
 		}
-    	  return "list";
+    	  return "redirect:/list";
       }
       
       public String deleteTodo(HttpServletRequest request) {
