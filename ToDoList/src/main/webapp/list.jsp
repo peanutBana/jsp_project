@@ -48,7 +48,7 @@
 								<input type=checkbox name="todo_chk">
 								<div class="todo_title">${todo.todoTitle}</div>
 								<div class="a"><a href="chkDelete(${todo.todoId}); return false;">delete</a></div>
-							</div>
+							</div>	
 						</li>
 					</c:forEach>
 					</ul>

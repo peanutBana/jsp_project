@@ -57,18 +57,7 @@ public class ToDoListController extends HttpServlet {
           String command = request.getServletPath();
           String site = null;
           
-          request.setCharacterEncoding("utf-8");
-//          String id = request.getParameter("userid");
-//          String name = request.getParameter("username");
-//          
-//          HttpSession session = request.getSession();
-//          session.setAttribute("id", id);
-//          session.setAttribute("name", name);
-          
-//          
-//          System.out.println(context);
-//          System.out.println(command);
-//         
+          request.setCharacterEncoding("utf-8");  
          
           switch(command) {
           case "/list":
@@ -106,9 +95,7 @@ public class ToDoListController extends HttpServlet {
     		  session.setAttribute("id", id);
     		  session.setAttribute("name", name);
     	  }
-    	  
-    	  System.out.println();
-   
+    	    
     	  try {
     		//수행 전 todo list
 			list = dao.getList();
