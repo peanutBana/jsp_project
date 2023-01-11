@@ -26,8 +26,10 @@
 			<div class="list">
 				<div class="undo">
 					<p>할 일 목록</p>
+					<form method="get" name="frm_list" action="update">
 					<ul>
 					<c:forEach var="todo" items="${todoList}" varStatus="status">
+				
 						<li>
 							<div class="item">
 								<input type=checkbox name="todo_chk">
@@ -37,6 +39,7 @@
 						</li>
 					</c:forEach>
 					</ul>
+					</form>
 				</div>
 				<vr></vr>
 				<div class="fin">
