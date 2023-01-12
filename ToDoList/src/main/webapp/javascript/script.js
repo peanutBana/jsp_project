@@ -49,15 +49,29 @@ function chkDelete(todoId) {
 	}		
 }
 
-function selectAll(chk){
+function selectAllUndo(chk){
 	var chks = document.getElementsByName("todo_chk");
 	for(var i=0; i < chks.length; i++){
 		chks[i].checked = chk;
 	}
 }
 
-function cancelAll(){
+function selectAllFin(chk){
+	var chks = document.getElementsByName("fin_chk");
+	for(var i=0; i < chks.length; i++){
+		chks[i].checked = chk;
+	}
+}
+
+function cancelAllUndo(){
 	const chks = document.getElementsByName("todo_chk");
+	chks.forEach((chkBox) => {
+		chkBox.checked = false;
+	} )
+}
+
+function cancelAllFin(){
+	const chks = document.getElementsByName("fin_chk");
 	chks.forEach((chkBox) => {
 		chkBox.checked = false;
 	} )

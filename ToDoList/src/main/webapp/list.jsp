@@ -28,9 +28,8 @@
 					<form method="get" name="frm_list" action="update">
 						<div class="list_header">
 							<p>할 일 목록</p>
-							<input type="button" value="전체선택" onclick='selectAll(this)'/>
-							<input type="button" value="전체취소" onclick='cancelAll()'/>
-							<input type="button" value="삭제"/>
+							<input type="button" value="전체선택" onclick='selectAllUndo(this)'/>
+							<input type="button" value="전체취소" onclick='cancelAllUndo()'/>
 							<input type="submit" value="갱신"/>
 						</div>
 						<ul>
@@ -50,16 +49,16 @@
 				<div class="fin">
 					<div class="list_header">
 							<p>완료한 목록</p>
-							<input type="button" value="전체선택" onclick='selectAll(this)'/>
-							<input type="button" value="전체취소" onclick='cancelAll()'/>
-							<input type="button" value="삭제"/>
+							<input type="button" value="전체선택" onclick='selectAllFin(this)'/>
+							<input type="button" value="전체취소" onclick='cancelAllFin()'/>
 						</div>
 					<ul>
 					<c:forEach var="todo" items="${todoListFin}" varStatus="status">
 						<li>
 							<div class="item">
-								<input type=checkbox name="undo_chk">
+								<input type=checkbox name="fin_chk">
 								<div class="todo_title">${todo.todoTitle}</div>
+								<div><a href="#" onclick="chkDelete(${todo.todoId}); return false;">delete</a></div>
 							</div>	
 						</li>
 					</c:forEach>

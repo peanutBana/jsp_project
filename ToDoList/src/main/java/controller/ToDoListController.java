@@ -118,8 +118,9 @@ public class ToDoListController extends HttpServlet {
     	  ToDo td = new ToDo();
     	  
     	  try {
-			BeanUtils.populate(td, request.getParameterMap());
-//			td.setTodoTitle(request.getParameter("todo"));
+//			BeanUtils.populate(td, request.getParameterMap());
+			td.setTodoTitle(request.getParameter("todo"));
+			System.out.println(td.getTodoTitle());
 			dao.insertTodo(td);
 			
     	} catch (Exception e) {
