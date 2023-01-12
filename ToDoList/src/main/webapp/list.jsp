@@ -25,32 +25,41 @@
 			</div>
 			<div class="list">
 				<div class="undo">
-					<p>할 일 목록</p>
 					<form method="get" name="frm_list" action="update">
-					<ul>
-					<c:forEach var="todo" items="${todoList}" varStatus="status">
-				
-						<li>
-							<div class="item">
-								<input type=checkbox name="todo_chk">
-								<div class="todo_title">${todo.todoTitle}</div>
-								<div class="a"><a href="#">edit</a>&nbsp;&nbsp;<a href="chkDelete(${todo.todoId}); return false;">delete</a></div>
-							</div>
-						</li>
-					</c:forEach>
-					</ul>
+						<div class="list_header">
+							<p>할 일 목록</p>
+							<input type="button" value="전체선택" onclick='selectAll(this)'/>
+							<input type="button" value="전체취소" onclick='cancelAll()'/>
+							<input type="button" value="삭제"/>
+							<input type="submit" value="갱신"/>
+						</div>
+						<ul>
+							<c:forEach var="todo" items="${todoList}" varStatus="status">
+								<li>
+									<div class="item">
+										<input type=checkbox name="todo_chk">
+										<div class="todo_title">${todo.todoTitle}</div>
+										<div><a href="#" onclick="chkDelete(${todo.todoId}); return false;">delete</a></div>
+									</div>
+								</li>
+							</c:forEach>
+						</ul>
 					</form>
 				</div>
 				<vr></vr>
 				<div class="fin">
-					<p>완료한 목록</p>
+					<div class="list_header">
+							<p>완료한 목록</p>
+							<input type="button" value="전체선택" onclick='selectAll(this)'/>
+							<input type="button" value="전체취소" onclick='cancelAll()'/>
+							<input type="button" value="삭제"/>
+						</div>
 					<ul>
 					<c:forEach var="todo" items="${todoListFin}" varStatus="status">
 						<li>
 							<div class="item">
-								<input type=checkbox name="todo_chk">
+								<input type=checkbox name="undo_chk">
 								<div class="todo_title">${todo.todoTitle}</div>
-								<div class="a"><a href="chkDelete(${todo.todoId}); return false;">delete</a></div>
 							</div>	
 						</li>
 					</c:forEach>

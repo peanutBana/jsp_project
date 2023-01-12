@@ -1,19 +1,23 @@
 function fn_login_submit() {
    var fn = document.frm_login;
-
    //유효성 체크
-   if (fn.username.value == "") {   //입력창 custname부분이 null이면
+   if (fn.username.value == '') {   //입력창 custname부분이 null이면
       alert("이름이 입력되지 않았습니다.");
       fn.username.focus();   //포커싱
       return false; 
 
+   }else{
+   	  fn.submit();  
+	
    }
-   if (fn.userid.value == "") {
+   if (fn.userid.value == '') {
       alert("아이디가 입력되지 않았습니다.");
       fn.userid.focus();   //포커싱
       return false;   //함수 끝
    }
-   fn.submit();  
+   else{
+   	  fn.submit();  
+   }
    //fn.action="index.jsp";
 }
 
@@ -44,3 +48,19 @@ function chkDelete(todoId) {
 		return false;
 	}		
 }
+
+function selectAll(chk){
+	var chks = document.getElementsByName("todo_chk");
+	for(var i=0; i < chks.length; i++){
+		chks[i].checked = chk;
+	}
+}
+
+function cancelAll(){
+	const chks = document.getElementsByName("todo_chk");
+	chks.forEach((chkBox) => {
+		chkBox.checked = false;
+	} )
+}
+
+

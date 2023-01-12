@@ -75,6 +75,18 @@ undo ul{
 	
 }
 
+.list_header{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	
+	
+}
+
+.list_header input{
+	height: 30px;
+	width: 60px;
+}
 
 .item{
 	display: flex;
