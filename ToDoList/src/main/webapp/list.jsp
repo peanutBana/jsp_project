@@ -38,6 +38,7 @@
 									<div class="item">
 										<input type=checkbox name="todo_chk">
 										<div class="todo_title">${todo.todoTitle}</div>
+										<div><a href="./view?todoId=${todo.todoId}">edit</a></div>
 										<div><a href="#" onclick="chkDelete(${todo.todoId}); return false;">delete</a></div>
 									</div>
 								</li>

@@ -5,7 +5,14 @@ public class ToDo {
 	private String todoTitle;
 	private int userId;
 	private String todoMemo;
+	private String isFinished;
 	
+	public String getIsFinished() {
+		return isFinished;
+	}
+	public void setIsFinished(String isFinished) {
+		this.isFinished = isFinished;
+	}
 	public int getTodoId() {
 		return todoId;
 	}

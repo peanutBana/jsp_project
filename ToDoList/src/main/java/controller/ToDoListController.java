@@ -66,10 +66,16 @@ public class ToDoListController extends HttpServlet {
           case "/insert":
            	site = insertTodo(request);
            	break;
+          case "/view":
+             	site = getView(request);
+             	break;
           case "/delete":
              site = deleteTodo(request);
-             System.out.println("delete");
              break;
+          case "/update":
+        	  site = updateTodo(request);
+        	  break;
+        	  
           }
           
           if (site.startsWith("redirect:/")) {
@@ -114,13 +120,27 @@ public class ToDoListController extends HttpServlet {
     	  return "list.jsp";
       }
       
+      public String getView(HttpServletRequest request) {
+    	  int todoId = Integer.parseInt(request.getParameter("todoId"));
+    	  
+    	  try {
+    		  ToDo td = dao.getView(todoId);
+    		  request.setAttribute("todo", td);
+    	  }catch(Exception e) {
+    		  e.printStackTrace();
+    	      ctx.log("Todo를 가져오는 과정에서 문제 발생");
+    	      request.setAttribute("error", "Todo가 정상적으로 처리되지 않았습니다!");
+    	  }
+    	  
+    	  return "view.jsp";
+      }
+      
       public String insertTodo(HttpServletRequest request) {
     	  ToDo td = new ToDo();
     	  
     	  try {
 //			BeanUtils.populate(td, request.getParameterMap());
 			td.setTodoTitle(request.getParameter("todo"));
-			System.out.println(td.getTodoTitle());
 			dao.insertTodo(td);
 			
     	} catch (Exception e) {
@@ -156,6 +176,25 @@ public class ToDoListController extends HttpServlet {
    		   }
    	   }
    	   return "redirect:/list?todoId=" + todoId;
+      }
+      
+      public String updateTodo(HttpServletRequest request) {
+    	  try {
+    		  ToDo td = new ToDo();
+    		  td.setTodoTitle(request.getParameter("todo"));
+    		  dao.insertTodo(td);    		  
+    	  } catch(Exception e) {
+    		  e.printStackTrace();
+    	      ctx.log("수정 과정에서 문제 발생");
+    	      try {
+    	            String encodeName = URLEncoder.encode("게시물이 정상적으로 수정되지 않았습니다!", "UTF-8");
+    	            return "redirect:/list &error" + encodeName;
+    	         } catch (UnsupportedEncodingException e1) {
+    	          
+    	        	 e1.printStackTrace();
+    	         }
+    	  }
+    	  return "redirect:/list";
       }
   
 }

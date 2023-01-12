@@ -52,6 +52,30 @@ public class ToDoListDAO {
 		   }
 	   }
 	   
+	   public ToDo getView(int todoId) throws Exception{
+		   ToDo td = new ToDo();
+		   String sql = "select todo_id, todo_title, user_id, todo_memo, is_finished";
+		   sql += " from todo";
+		   sql += " where todo_id = ?";
+		   
+		   try (
+			   Connection conn = open();
+			   PreparedStatement pstmt = conn.prepareStatement(sql);			   
+		   ){
+			   pstmt.setInt(1, todoId);
+			   ResultSet rs = pstmt.executeQuery();
+			   while(rs.next()) {
+				   td.setTodoId(rs.getInt(1));
+				   td.setTodoTitle(rs.getString(2));
+				   td.setUserId(rs.getInt(3));
+				   td.setTodoMemo(rs.getString(4));
+				   td.setIsFinished(rs.getString(5));
+			   }
+			   return td;
+		   }
+		   
+	   }
+	   
 	   public ArrayList<ToDo> getListFin() throws Exception{
 		   ArrayList<ToDo> toDoList = new ArrayList<>();
 		   String sql = "select todo_id, todo_title, user_id, todo_memo from todo where is_finished = 'y'";
