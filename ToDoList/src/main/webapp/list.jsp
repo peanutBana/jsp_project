@@ -20,6 +20,7 @@
 			<div class="insert">
 				<form method="post" name="frm_todo" action="insert">
 					<label>해야 할 일 추가! :<input class="content" type="text" name="todo" maxlength="100" placeholder="할 일을 입력해주세요!"></label>
+					<input type="hidden" name="id" value="<%=id%>">
 					<button class= "btns" type="submit" onclick="fn_todoInput_submit()">등록</button>
 				</form>
 			</div>

@@ -99,13 +99,14 @@ public class ToDoListDAO {
 	   }
 	   
 	   public void insertTodo(ToDo td) throws Exception{
-		   String sql = "INSERT INTO TODO (TODO_ID, TODO_TITLE, IS_FINISHED) VALUES(todo_seq.nextval, ?, 'n')";
+		   String sql = "INSERT INTO TODO (TODO_ID, TODO_TITLE, USER_ID, IS_FINISHED) VALUES(todo_seq.nextval, ?, ?, 'n')";
 		   
 		   try(
 					Connection conn = open();
 					PreparedStatement pstmt = conn.prepareStatement(sql);
 					){
 				pstmt.setString(1,td.getTodoTitle());
+				pstmt.setInt(2,td.getUserId());
 				pstmt.executeUpdate();
 			}
 	   }

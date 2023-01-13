@@ -74,10 +74,9 @@ public class ToDoListController extends HttpServlet {
              break;
           case "/update":
         	  site = updateTodo(request);
-        	  break;
-        	  
+        	  break;        	  
           }
-          
+
           if (site.startsWith("redirect:/")) {
               String rview = site.substring("redirect:/".length());
               System.out.println(rview);
@@ -141,7 +140,9 @@ public class ToDoListController extends HttpServlet {
     	  try {
 //			BeanUtils.populate(td, request.getParameterMap());
 			td.setTodoTitle(request.getParameter("todo"));
+			td.setUserId(Integer.parseInt(request.getParameter("id")));
 			dao.insertTodo(td);
+			System.out.println(request.getParameter("id"));
 			
     	} catch (Exception e) {
 			e.printStackTrace();
