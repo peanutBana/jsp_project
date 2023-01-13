@@ -6,18 +6,45 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/style.css" />
-<%-- <%
+<%
 	String name = (String)session.getAttribute("name");
 	int id = (Integer)session.getAttribute("id");
-%> --%>
+%> 
 </head>
 <body>
-<header><%-- [<%=name%>]님의 TodoList, 아이디는 <%=id%> --%>header</header>
+<header>Todo 수정</header>
 
 <section>
-	
-	
-
+	<div class="view_list">
+		<table>
+			
+			<tr>
+				<td>column</td>
+				<td>value</td>
+			</tr>	
+			<tr>
+				<td>아이디 번호</td>
+				<td>${todo.todoId}</td>
+			</tr>
+			<tr>
+				<td>Todo 제목</td>
+				<td>${todo.todoTitle}</td>
+			</tr>
+			<tr>
+				<td>작성자 아이디 </td>
+				<td>${todo.todoId}</td>
+			</tr>
+			<tr>
+				<td>메모</td>
+				<td>${todo.todoMemo}</td>
+			</tr>
+			<tr>
+				<td>수행 여부</td>
+				<td>${todo.isFinished}</td>
+			</tr>
+		</table>
+	</div>
+	<div class="edit"><a href="./edit?todoId=${todo.todoId}">edit</a></div>
 </section>
 
 

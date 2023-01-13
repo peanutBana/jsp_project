@@ -157,3 +157,24 @@ input.init{
 .a{
 	text-decoration :none;
 }
+
+.view_list{
+	font-size : 30px;
+	margin: 30px 100px; 
+}
+
+.view_list ul li{
+	margin : 10px auto;
+}
+
+table td{
+	border : 1px solid #000;
+	text-align : center;
+}
+
+.edit{
+	font-size: 20px;
+	
+}
+
+
