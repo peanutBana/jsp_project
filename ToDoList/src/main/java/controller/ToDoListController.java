@@ -61,19 +61,19 @@ public class ToDoListController extends HttpServlet {
          
           switch(command) {
           case "/list":
-          	site = getList(request);
+          	site = getList(request);			//db에 저장된 todo list불러오기
           	break;
           case "/insert":
-           	site = insertTodo(request);
+           	site = insertTodo(request);			//새로운 todo db에 삽입하기
            	break;
           case "/view":
-             	site = getView(request);
+             	site = getView(request);		//todo 상세화면 불러오기
              	break;
           case "/delete":
-             site = deleteTodo(request);
+             site = deleteTodo(request);		//todo 삭제하기
              break;
           case "/update":
-        	  site = updateTodo(request);
+        	  site = updateTodo(request);		//todo 업데이트
         	  break;        	  
           }
 
@@ -94,6 +94,8 @@ public class ToDoListController extends HttpServlet {
     	  if(request.getParameter("userid") != null && request.getParameter("username") != null) {
     		  int id = Integer.parseInt(request.getParameter("userid"));
     		  String name = request.getParameter("username");
+    		  
+    		  
     		  
     		  HttpSession session = request.getSession();
     		  //세션에 id, name 저장
@@ -138,11 +140,9 @@ public class ToDoListController extends HttpServlet {
     	  ToDo td = new ToDo();
     	  
     	  try {
-//			BeanUtils.populate(td, request.getParameterMap());
 			td.setTodoTitle(request.getParameter("todo"));
 			td.setUserId(Integer.parseInt(request.getParameter("id")));
 			dao.insertTodo(td);
-			System.out.println(request.getParameter("id"));
 			
     	} catch (Exception e) {
 			e.printStackTrace();
@@ -154,7 +154,7 @@ public class ToDoListController extends HttpServlet {
 	          } catch (UnsupportedEncodingException e1) {
 	             e1.printStackTrace();
 	          }
-	          // 사용자 한테 에러메시지 보여주기 위해 저장
+	          // 사용자 한테 에러메시지 보여주기 위해 저장ㅌㅌㅌ
 	          request.setAttribute("error", "todo가 정상적으로 등록되지 않았습니다!");
 	          return getList(request);
 		}
@@ -182,7 +182,7 @@ public class ToDoListController extends HttpServlet {
       public String updateTodo(HttpServletRequest request) {
     	  try {
     		  ToDo td = new ToDo();
-    		  td.setTodoTitle(request.getParameter("todo"));
+    		  BeanUtils.populate(td, request.getParameterMap());
     		  dao.insertTodo(td);    		  
     	  } catch(Exception e) {
     		  e.printStackTrace();

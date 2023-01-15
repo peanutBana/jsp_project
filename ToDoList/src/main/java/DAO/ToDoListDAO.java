@@ -30,6 +30,12 @@ public class ToDoListDAO {
 			return conn; //데이터 베이스의 연결 객체를 리턴
 		}
 	   
+	   public boolean login(String name, int id) {
+		   String sql = "";
+		   
+		return true;
+	   }
+	   
 	   public ArrayList<ToDo> getList() throws Exception{
 		   ArrayList<ToDo> toDoList = new ArrayList<>();
 		   String sql = "select todo_id, todo_title, user_id, todo_memo from todo where is_finished = 'n'";
