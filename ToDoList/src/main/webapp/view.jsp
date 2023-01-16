@@ -44,7 +44,7 @@
 			</tr>
 		</table>
 	</div>
-	<div><a href="./edit?todoId=${todo.todoId}">edit</a></div>
+	<div><a href="edit?todoId=${todo.todoId}">edit</a></div>
 </section>
 
 

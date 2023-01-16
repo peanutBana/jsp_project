@@ -30,10 +30,24 @@ public class ToDoListDAO {
 			return conn; //데이터 베이스의 연결 객체를 리턴
 		}
 	   
-	   public boolean login(String name, int id) {
-		   String sql = "";
+	   public ArrayList<User> readUserList() throws Exception{
+		   ArrayList<User> userList = new ArrayList<>();
+		   String sql = "select user_id, user_name from td_user";
 		   
-		return true;
+		   try(
+				   Connection conn = open();
+	    	       PreparedStatement pstmt = conn.prepareStatement(sql); // 쿼리문 등록 -> 컴파일
+				   ResultSet rs = pstmt.executeQuery(); 
+				   ){
+			   while(rs.next()) {
+				   User user = new User();
+				   user.setUserId(rs.getInt(1));
+				   user.setUserName(rs.getString(2));
+				   userList.add(user);
+			   }
+			   
+			   return userList;
+		   }		   
 	   }
 	   
 	   public ArrayList<ToDo> getList() throws Exception{

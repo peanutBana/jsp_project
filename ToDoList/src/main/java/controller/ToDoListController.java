@@ -69,6 +69,9 @@ public class ToDoListController extends HttpServlet {
           case "/view":
              	site = getView(request);		//todo 상세화면 불러오기
              	break;
+          case "/edit":
+           	site = getViewForEdit(request);		//todo 상세화면 불러오기
+           	break;
           case "/delete":
              site = deleteTodo(request);		//todo 삭제하기
              break;
@@ -89,19 +92,23 @@ public class ToDoListController extends HttpServlet {
       public String getList(HttpServletRequest request) {
     	  List<ToDo> list;
     	  List<ToDo> list_fin;
+    	  List<User> userList;
     	  
     	  //index에서 받아온 id, name저장
     	  if(request.getParameter("userid") != null && request.getParameter("username") != null) {
     		  int id = Integer.parseInt(request.getParameter("userid"));
     		  String name = request.getParameter("username");
     		  
-    		  
-    		  
-    		  HttpSession session = request.getSession();
-    		  //세션에 id, name 저장
-    		  session.setAttribute("id", id);
-    		  session.setAttribute("name", name);
-    	  }
+//    		  try {
+//    			  userList = dao.readUserList();
+//				for(User user : userList) {
+//					if(user.getUserId() == id && user.getUserName() == name) {
+						 HttpSession session = request.getSession();
+			    		  //세션에 id, name 저장
+			    		  session.setAttribute("id", id);
+			    		  session.setAttribute("name", name);
+			
+    	  }    
     	    
     	  try {
     		//수행 전 todo list
@@ -161,6 +168,20 @@ public class ToDoListController extends HttpServlet {
     	  return "redirect:/list";
       }
       
+      String getViewForEdit(HttpServletRequest request) {
+    	  int todoId = Integer.parseInt(request.getParameter("todoId"));
+    	  
+    	  try {
+    		  ToDo td = dao.getView(todoId);
+    		  request.setAttribute("todo", td);
+    	  }catch (Exception e) {
+    		  e.printStackTrace();
+    	      ctx.log("게시글을 가져오는 과정에서 문제 발생");
+    	      request.setAttribute("error", "Todo가 정상적으로 처리되지 않았습니다.");
+    	  }
+    	  return "edit.jsp";
+      }
+      
       public String deleteTodo(HttpServletRequest request) {
     	  int todoId = Integer.parseInt(request.getParameter("todoId"));
     	  
@@ -188,7 +209,7 @@ public class ToDoListController extends HttpServlet {
     		  e.printStackTrace();
     	      ctx.log("수정 과정에서 문제 발생");
     	      try {
-    	            String encodeName = URLEncoder.encode("게시물이 정상적으로 수정되지 않았습니다!", "UTF-8");
+      	            String encodeName = URLEncoder.encode("게시물이 정상적으로 수정되지 않았습니다!", "UTF-8");
     	            return "redirect:/list &error" + encodeName;
     	         } catch (UnsupportedEncodingException e1) {
     	          
