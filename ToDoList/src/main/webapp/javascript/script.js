@@ -60,6 +60,17 @@ function chkUpdate(todoId){
 	}
 }
 
+function revoke(todoId){
+	const result = confirm("갱신 하시겠습니까?");
+	
+	if(result){
+		const url = location.origin;
+		location.href = url + "/ToDoList/revoke?todoId=" + todoId;
+	}else{
+		return false;
+	}
+}
+
 $(document).ready(function(){
 	if($("todo_chk").is(":checked")){
 		updateChk(todoId);

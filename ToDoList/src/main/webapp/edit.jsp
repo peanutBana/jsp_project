@@ -42,11 +42,12 @@
 					<td>수행 여부</td>
 					<td>
 						<input type="radio" name="isFinished" value="y"/>완료
-						<input type="radio" name="isFinished" value="n"/>미완료
+						<input type="radio" name="isFinished" value="n" checked/>미완료
 					</td>
 				</tr>
 			</table>
-			<input type="submit" value="수정">  
+			<!-- <input type="submit" value="수정"> -->  
+			<a href="javascript:edit_frm.submit();" class="a_edit">수정하기</a>
 			<a href="view?todoId=${todo.todoId}" class="a_edit">수정취소</a>
 		</form>
 	</div>

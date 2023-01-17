@@ -81,6 +81,9 @@ public class ToDoListController extends HttpServlet {
           case "/chkupdate":
         	  site = chkUpdate(request);		//todo 업데이트
         	  break;   
+          case "/revoke":
+        	  site = revoke(request);		//todo 업데이트
+        	  break;   
           }
 
           if (site.startsWith("redirect:/")) {
@@ -204,6 +207,24 @@ public class ToDoListController extends HttpServlet {
     	  
     	  try {
       		   dao.updateChk(todoId);
+      	   }catch(Exception e) {
+      		   e.printStackTrace();
+      		   ctx.log("Todo을 갱신하는 과정에서 문제 발생");
+      		   String encodeName;
+      		   try {
+      			   encodeName = URLEncoder.encode("Todo가 정상적으로 갱신되지 않았습니다!","UTF-8");
+      		   }catch(UnsupportedEncodingException e1) {
+      			   e1.printStackTrace();
+      		   }
+      	   }
+      	   return "redirect:/list?todoId=" + todoId;
+      }
+      
+      public String revoke(HttpServletRequest request) {
+    	  int todoId = Integer.parseInt(request.getParameter("todoId"));
+    	  
+    	  try {
+      		   dao.revoke(todoId);
       	   }catch(Exception e) {
       		   e.printStackTrace();
       		   ctx.log("Todo을 갱신하는 과정에서 문제 발생");

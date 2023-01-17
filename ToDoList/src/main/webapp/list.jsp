@@ -34,8 +34,7 @@
 							<c:forEach var="todo" items="${todoList}" varStatus="status">
 								<li>
 									<div class="item">
-<%-- 										<input type=checkbox name="todo_chk" id="todo_chk" onclick="updateChk(${todo.todoId});">
- --%>									<div><a href="#" onclick="chkUpdate(${todo.todoId}); return false;">□</a></div>
+ 										<div><a href="#" onclick="chkUpdate(${todo.todoId}); return false;">□</a></div>
 										<div class="todo_title"><a href="./view?todoId=${todo.todoId}">${todo.todoTitle}</a></div>
 										<div><a href="#" onclick="chkDelete(${todo.todoId}); return false;">delete</a></div>
 									</div>
@@ -53,6 +52,7 @@
 					<c:forEach var="todo" items="${todoListFin}" varStatus="status">
 						<li>
 							<div class="item">
+								<div><a href="#" onclick="revoke(${todo.todoId}); return false;">□</a></div>
 								<div class="todo_title">${todo.todoTitle}</div>
 								<div><a href="#" onclick="chkDelete(${todo.todoId}); return false;">delete</a></div>
 							</div>	

@@ -334,11 +334,17 @@ input.init{
 	height: 30px;
 }
 
+td{
+	padding:5px;	
+}
+
 a{
 	text-decoration :none;
 }
 .a_edit{
 	font-size : 20px;
+	border:1px solid black;
+	padding: 3px;
 }
 
 .view_list{
