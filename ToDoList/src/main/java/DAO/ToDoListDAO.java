@@ -165,4 +165,20 @@ public class ToDoListDAO {
 					}
 				}
 		}
+	   
+	   public void updateChk(int todoId) throws Exception{
+		   String sql = "update todo set is_finished = 'y' where todo_id = ?";
+		   
+		   try (
+					Connection conn = open();
+					PreparedStatement pstmt = conn.prepareStatement(sql);
+						) {
+					pstmt.setInt(1, todoId);
+					
+					//수정된 글이 없을 경우
+					if(pstmt.executeUpdate()!= 1) {
+						throw new Exception("갱신된 글이 없습니다!");
+					}
+				}
+	   }
 }

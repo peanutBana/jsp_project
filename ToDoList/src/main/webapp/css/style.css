@@ -179,12 +179,6 @@ table td{
 
 }
 
-
-
-
-
-
-@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -340,7 +334,7 @@ input.init{
 	height: 30px;
 }
 
-.a{
+a{
 	text-decoration :none;
 }
 .a_edit{

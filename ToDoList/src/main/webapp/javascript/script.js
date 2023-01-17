@@ -49,6 +49,23 @@ function chkDelete(todoId) {
 	}		
 }
 
+function chkUpdate(todoId){
+	const result = confirm("갱신 하시겠습니까?");
+	
+	if(result){
+		const url = location.origin;
+		location.href = url + "/ToDoList/chkupdate?todoId=" + todoId;
+	}else{
+		return false;
+	}
+}
+
+$(document).ready(function(){
+	if($("todo_chk").is(":checked")){
+		updateChk(todoId);
+	}
+})
+
 function selectAllUndo(chk){
 	var chks = document.getElementsByName("todo_chk");
 	for(var i=0; i < chks.length; i++){
@@ -76,5 +93,7 @@ function cancelAllFin(){
 		chkBox.checked = false;
 	} )
 }
+
+
 
 

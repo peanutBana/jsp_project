@@ -77,7 +77,10 @@ public class ToDoListController extends HttpServlet {
              break;
           case "/update":
         	  site = updateTodo(request);		//todo 업데이트
-        	  break;        	  
+        	  break;   
+          case "/chkupdate":
+        	  site = chkUpdate(request);		//todo 업데이트
+        	  break;   
           }
 
           if (site.startsWith("redirect:/")) {
@@ -196,6 +199,24 @@ public class ToDoListController extends HttpServlet {
    	   return "redirect:/list?todoId=" + todoId;
       }
       
+      public String chkUpdate(HttpServletRequest request) {
+    	  int todoId = Integer.parseInt(request.getParameter("todoId"));
+    	  
+    	  try {
+      		   dao.updateChk(todoId);
+      	   }catch(Exception e) {
+      		   e.printStackTrace();
+      		   ctx.log("Todo을 갱신하는 과정에서 문제 발생");
+      		   String encodeName;
+      		   try {
+      			   encodeName = URLEncoder.encode("Todo가 정상적으로 갱신되지 않았습니다!","UTF-8");
+      		   }catch(UnsupportedEncodingException e1) {
+      			   e1.printStackTrace();
+      		   }
+      	   }
+      	   return "redirect:/list?todoId=" + todoId;
+      }
+      
       public String updateTodo(HttpServletRequest request) {
     	  try {
     		  ToDo td = new ToDo();
@@ -203,6 +224,7 @@ public class ToDoListController extends HttpServlet {
     		  td.setTodoMemo(request.getParameter("todoMemo"));
     		  td.setIsFinished(request.getParameter("isFinished"));
     		  td.setTodoId(Integer.parseInt(request.getParameter("todoId")));
+    
     		  dao.updateTodo(td);    		  
     	  } catch(Exception e) {
     		  e.printStackTrace();

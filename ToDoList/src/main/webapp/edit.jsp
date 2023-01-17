@@ -40,7 +40,10 @@
 				</tr>
 				<tr>
 					<td>수행 여부</td>
-					<td><input type="text" name="isFinished" value="${todo.isFinished}"/></td>
+					<td>
+						<input type="radio" name="isFinished" value="y"/>완료
+						<input type="radio" name="isFinished" value="n"/>미완료
+					</td>
 				</tr>
 			</table>
 			<input type="submit" value="수정">  
