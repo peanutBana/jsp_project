@@ -17,7 +17,6 @@
 <section>
 	<div class="view_list">
 		<table>
-			
 			<tr>
 				<td>column</td>
 				<td>value</td>
@@ -43,8 +42,9 @@
 				<td>${todo.isFinished}</td>
 			</tr>
 		</table>
+		<a href="edit?todoId=${todo.todoId}" class="a_edit">수정하기</a>
+		<a href="list" class="a_edit">뒤로가기</a>
 	</div>
-	<div><a href="edit?todoId=${todo.todoId}">edit</a></div>
 </section>
 
 

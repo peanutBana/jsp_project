@@ -67,7 +67,7 @@
 				</div>
 			</div>
 		</section>
-	<footer>footer area</footer>
+	<%-- <%@ include file="footer.jsp"%> --%>
 	<script>
 	  <c:if test="${param.error != null}">
 	    alert("${error}");

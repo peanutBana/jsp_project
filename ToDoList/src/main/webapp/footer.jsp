@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<footer>footer area</footer>
+	<footer>박민우</footer>
 </body>
 </html>

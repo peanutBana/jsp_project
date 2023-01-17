@@ -157,24 +157,216 @@ input.init{
 .a{
 	text-decoration :none;
 }
+.a_edit{
+	font-size : 20px;
+}
 
 .view_list{
 	font-size : 30px;
 	margin: 30px 100px; 
 }
-
+.edit_list{
+	font-size : 30px;
+	margin: 30px 100px; 
+}
 .view_list ul li{
 	margin : 10px auto;
 }
 
 table td{
 	border : 1px solid #000;
-	text-align : center;
+	width: 200px;
+
 }
 
-.edit{
-	font-size: 20px;
+
+
+
+
+
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 10px;
+  background: #FE9F9F; 	
+}
+
+header{
+	width: 100%;
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+    background: #FFBDAE;
+    font-size: 50px;
+}
+
+legend{
+	font-size: 40px;
+	text-align: center;
+}
+
+fieldset{
+	padding:30px;
+}
+
+p {
+	font-size: 30px;
+	margin: 20px;
+}
+
+main{
+	width:1000px;
+	height: 500px;
+	margin: 0 auto ; 
+	display: flex;
+	flex-direction: row;	
+	justify-content: center;
+	align-items: center;
+}
+.init{
+	vertical-align: middle;
+}
+
+section{
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.insert form{
+	display: flex;
+	flex-direction: rows;
+	text-align:center;	 
+	margin: 30px;
+}
+
+.list{		/*해야 할 일 추가*/
+	display: flex;
+	flex-direction: row;
+}
+
+ul li{
+	list-style: none;
+}
+
+.list .undo{
+	width: 50%;
+}
+
+undo ul{
+	list-style-type: square;
 	
 }
+
+.list_header{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	
+	
+}
+
+.list_header input{
+	height: 30px;
+	width: 60px;
+}
+
+.item{
+	display: flex;
+	justify-content: space-between;
+	font-size: 30px;
+}
+
+.item input{
+	margin-right: 20px;
+}
+
+.list .fin{
+	width: 50%;
+}
+
+vr { 
+    width:1px;
+    background-color:#000;
+    margin: 0 30px;
+}
+
+
+.content{ 
+	width: 500px;
+	height: 30px;
+	line-height: 30px;
+	vertical-align: middle;
+}
+
+label{
+	font-size: 35px;
+	display: flex;
+	justify-content: space-between;	
+}
+
+ label input{
+ 	margin: 0 10px;
+ }
+ 
+input::placeholder { text-align: center; }
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    line-height: 150px;
+    text-align: center;
+    font-size: 50px;
+    background: #B69292;
+    color: white;
+}
+
+input.init{
+	width: 120px;
+	height: 30px;
+}
+
+.btn{
+	text-align: center;	
+}
+
+.btns{
+	width: 65px;
+	height: 30px;
+}
+
+.a{
+	text-decoration :none;
+}
+.a_edit{
+	font-size : 20px;
+}
+
+.view_list{
+	font-size : 30px;
+	margin: 30px 100px; 
+}
+.edit_list{
+	font-size : 30px;
+	margin: 30px 100px; 
+}
+.view_list ul li{
+	margin : 10px auto;
+}
+
+table td{
+	border : 1px solid #000;
+	width: 200px;
+
+}
+
+
+
+
 
 

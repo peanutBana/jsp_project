@@ -99,14 +99,10 @@ public class ToDoListController extends HttpServlet {
     		  int id = Integer.parseInt(request.getParameter("userid"));
     		  String name = request.getParameter("username");
     		  
-//    		  try {
-//    			  userList = dao.readUserList();
-//				for(User user : userList) {
-//					if(user.getUserId() == id && user.getUserName() == name) {
-						 HttpSession session = request.getSession();
-			    		  //세션에 id, name 저장
-			    		  session.setAttribute("id", id);
-			    		  session.setAttribute("name", name);
+			  HttpSession session = request.getSession();
+    		  //세션에 id, name 저장
+    		  session.setAttribute("id", id);
+    		  session.setAttribute("name", name);
 			
     	  }    
     	    
@@ -203,8 +199,11 @@ public class ToDoListController extends HttpServlet {
       public String updateTodo(HttpServletRequest request) {
     	  try {
     		  ToDo td = new ToDo();
-    		  BeanUtils.populate(td, request.getParameterMap());
-    		  dao.insertTodo(td);    		  
+    		  td.setTodoTitle(request.getParameter("todoTitle"));
+    		  td.setTodoMemo(request.getParameter("todoMemo"));
+    		  td.setIsFinished(request.getParameter("isFinished"));
+    		  td.setTodoId(Integer.parseInt(request.getParameter("todoId")));
+    		  dao.updateTodo(td);    		  
     	  } catch(Exception e) {
     		  e.printStackTrace();
     	      ctx.log("수정 과정에서 문제 발생");

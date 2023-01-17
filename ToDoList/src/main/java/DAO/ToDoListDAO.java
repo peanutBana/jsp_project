@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DTO.ToDo;
@@ -52,7 +54,8 @@ public class ToDoListDAO {
 	   
 	   public ArrayList<ToDo> getList() throws Exception{
 		   ArrayList<ToDo> toDoList = new ArrayList<>();
-		   String sql = "select todo_id, todo_title, user_id, todo_memo from todo where is_finished = 'n'";
+		   String sql = "select todo_id, todo_title, user_id, todo_memo ";
+				  sql += "from todo where is_finished = 'n'";
 		   
 		   try(
 				   Connection conn = open();
@@ -127,6 +130,22 @@ public class ToDoListDAO {
 					){
 				pstmt.setString(1,td.getTodoTitle());
 				pstmt.setInt(2,td.getUserId());
+				pstmt.executeUpdate();
+			}
+	   } 
+	   
+	   public void updateTodo(ToDo td) throws Exception{
+		   String sql ="update todo set"; 
+		   sql += " todo_title= ?, todo_memo= ? ,is_finished = ?";
+		   sql += " where todo_id= ?";
+			try (
+				Connection conn = open();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+					) {
+				pstmt.setString(1, td.getTodoTitle());
+				pstmt.setString(2, td.getTodoMemo());
+				pstmt.setString(3, td.getIsFinished());
+				pstmt.setInt(4, td.getTodoId());
 				pstmt.executeUpdate();
 			}
 	   }
